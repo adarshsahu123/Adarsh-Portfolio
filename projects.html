@@ -1,0 +1,61 @@
+<!-- projects.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | Adarsh Portfolio</title>
+    <link rel="stylesheet" href="projects.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <button onclick="goBackToCube()">⬅️ Back to Cube</button>
+
+    <script>
+      function goBackToCube() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="background"></div>
+
+    <div class="projects-container">
+      <h1 class="title">💻 My Projects</h1>
+
+      <div class="project-card" onclick="openProject('ecommerce.html')">
+        <h2>🛒 E-Commerce Website</h2>
+        <p>
+          Dynamic furniture platform with user login, admin panel & product
+          control.
+        </p>
+      </div>
+
+      <div class="project-card" onclick="openProject('gitnest.html')">
+        <h2>🐙 GitNest</h2>
+        <p>
+          Developer collaboration platform with version control, project
+          tracking & UI.
+        </p>
+      </div>
+
+      <a href="index.html" class="back-btn">⬅ Back to Cube</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+      function openProject(page) {
+        gsap.to(".project-card", {
+          y: -20,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.2,
+          onComplete: () => {
+            window.location.href = page;
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

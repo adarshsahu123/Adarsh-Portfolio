@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adarsh | Developer Portfolio</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="background"></div>
+
+    <div class="cube-container">
+      <div class="cube" onclick="handleFaceClick(event)">
+        <div class="face front" data-page="about.html">
+          <span class="face-text">ABOUT</span>
+        </div>
+        <div class="face back" data-page="skills.html">
+          <span class="face-text">SKILLS</span>
+        </div>
+        <div class="face right" data-page="projects.html">
+          <span class="face-text">PROJECTS</span>
+        </div>
+        <div class="face left" data-page="education.html">
+          <span class="face-text">EDUCATION</span>
+        </div>
+        <div class="face top" data-page="certificates.html">
+          <span class="face-text">CERTIFICATES</span>
+        </div>
+        <div class="face bottom" data-page="contact.html">
+          <span class="face-text">CONTACT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button onclick="rotate('left')">⬅️</button>
+      <button onclick="rotate('up')">⬆️</button>
+    </div>
+
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Script -->
+    <script>
+      let rotateX = 0;
+      let rotateY = 0;
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedFace = localStorage.getItem("cubeFace");
+
+        // rotation based on saved face name
+        switch (savedFace) {
+          case "about.html":
+            rotateX = -90;
+            rotateY = 0;
+            break;
+          case "skills.html":
+            rotateX = 0;
+            rotateY = -90;
+            break;
+          case "projects.html":
+            rotateX = 0;
+            rotateY = 90;
+            break;
+          case "education.html":
+            rotateX = 0;
+            rotateY = 180;
+            break;
+          case "certificates.html":
+            rotateX = -180;
+            rotateY = 0;
+            break;
+          case "contact.html":
+            rotateX = 90;
+            rotateY = 0;
+            break;
+          default:
+            rotateX = 0;
+            rotateY = 0;
+        }
+
+        document.querySelector(
+          ".cube"
+        ).style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      function rotate(direction) {
+        if (direction === "left") rotateY -= 90;
+        if (direction === "right") rotateY += 90;
+        if (direction === "up") rotateX += 90;
+        if (direction === "down") rotateX -= 90;
+
+        document.querySelector(
+          ".cube"
+        ).style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
+
+      function handleFaceClick(event) {
+        const page = event.target.dataset.page;
+        if (page) {
+          localStorage.setItem("cubeFace", page);
+          window.location.href = page;
+        }
+      }
+    </script>
+  </body>
+</html>
